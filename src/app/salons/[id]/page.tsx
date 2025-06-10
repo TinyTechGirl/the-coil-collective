@@ -11,10 +11,12 @@ interface Props {
 }
 
 export default async function SalonPage({ params }: Props) {
+  const salonId = params.id
+
   const { data: salon, error } = await supabase
     .from('salons')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', salonId)
     .single()
 
   if (error || !salon) {
